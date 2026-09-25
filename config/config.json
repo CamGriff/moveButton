@@ -11,8 +11,5 @@
       ]
     }
   },
-  "externals": {},
-  "localizedResources": {
-    "MoveButtonCommandSetStrings": "lib/extensions/moveButton/loc/{locale}.js"
-  }
+  "externals": {}
 }
