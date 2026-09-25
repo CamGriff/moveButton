@@ -26,11 +26,14 @@ npm run build
 
 This runs the tests and produces `sharepoint/solution/move-page.sppkg`.
 
-To debug locally against the site configured in `config/serve.json`:
+To debug locally, set your tenant's domain once. `config/serve.json` uses a `{tenantDomain}` placeholder so the tenant name isn't committed:
 
-```bash
+```powershell
+setx SPFX_SERVE_TENANT_DOMAIN "<tenant>.sharepoint.com"   # then open a new terminal
 npm start
 ```
+
+`pageUrl` in `config/serve.json` is the SPFx default placeholder. Before debugging, point it at your Site Pages library locally, e.g. `https://{tenantDomain}/sites/<site>/SitePages/Forms/AllPages.aspx`, and don't commit that change.
 
 ## Deploy
 
