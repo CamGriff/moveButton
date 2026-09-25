@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/spfx-serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://tranzversal.sharepoint.com/sites/devintranet/SitePages/Forms/AllPages.aspx",
+      "customActions": {
+        "302145c4-06df-4dab-87c7-238c813ecb2c": {
+          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "properties": {}
+        }
+      }
+    }
+  }
+}

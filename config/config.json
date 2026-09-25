@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "move-button-command-set": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/moveButton/MoveButtonCommandSet.js",
+          "manifest": "./src/extensions/moveButton/MoveButtonCommandSet.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "MoveButtonCommandSetStrings": "lib/extensions/moveButton/loc/{locale}.js"
+  }
+}

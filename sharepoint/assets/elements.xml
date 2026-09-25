@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <CustomAction
+        Title="MoveButton"
+        RegistrationId="119"
+        RegistrationType="List"
+        Location="ClientSideExtension.ListViewCommandSet.CommandBar"
+        ClientSideComponentId="302145c4-06df-4dab-87c7-238c813ecb2c"
+        ClientSideComponentProperties="{}">
+    </CustomAction>
+</Elements>

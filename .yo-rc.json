@@ -1,0 +1,20 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "useGulp": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.22.2",
+    "sdksVersions": {},
+    "version": "1.22.2",
+    "libraryName": "move-button",
+    "libraryId": "11432589-3925-42a7-89f8-f85058d9ced6",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "move-button",
+    "solutionShortDescription": "move-button description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "extension",
+    "extensionType": "ListViewCommandSet"
+  }
+}

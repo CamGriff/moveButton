@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/command-set-extension-manifest.schema.json",
+  "id": "302145c4-06df-4dab-87c7-238c813ecb2c",
+  "alias": "MoveButtonCommandSet",
+  "componentType": "Extension",
+  "extensionType": "ListViewCommandSet",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "items": {
+    "MOVE_PAGE": {
+      "title": {
+        "default": "Move page"
+      },
+      "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCBmaWxsPSIjMzIzMTMwIiBkPSJNNiAyYTIgMiAwIDAgMC0yIDJ2NS4yYy4zMi0uMDguNjYtLjE1IDEtLjE4VjRhMSAxIDAgMCAxIDEtMWg0djMuNWMwIC44My42NyAxLjUgMS41IDEuNUgxNXY4YTEgMSAwIDAgMS0xIDFoLTMuNmMtLjE4LjM2LS40LjctLjY2IDFIMTRhMiAyIDAgMCAwIDItMlY3LjQxYzAtLjQtLjE2LS43OC0uNDQtMS4wNmwtMy45MS0zLjkxQTEuNSAxLjUgMCAwIDAgMTAuNTkgMkg2Wm04LjggNWgtMy4zYS41LjUgMCAwIDEtLjUtLjVWMy4yTDE0LjggN1pNNS41IDE5YTQuNSA0LjUgMCAxIDAgMC05IDQuNSA0LjUgMCAwIDAgMCA5Wm0uMzUtMi4xNWEuNS41IDAgMCAxLS43LS43TDYuMjkgMTVIMy41YS41LjUgMCAwIDEgMC0xaDIuOGwtMS4xNS0xLjE1YS41LjUgMCAwIDEgLjctLjdsMiAyYS41LjUgMCAwIDEgLjE1LjM1LjUuNSAwIDAgMS0uMTQuMzVsLTIgMloiLz48L3N2Zz4=",
+      "type": "command"
+    }
+  }
+}
