@@ -1,4 +1,5 @@
 import { Log } from '@microsoft/sp-core-library';
+import { ThemeProvider, type IReadonlyTheme, type ThemeChangedEventArgs } from '@microsoft/sp-component-base';
 import {
   BaseListViewCommandSet,
   type Command,
@@ -10,6 +11,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { MoveFolderPicker } from './components/MoveFolderPicker';
 import { SitePagesService } from './services/SitePagesService';
+import { DEFAULT_ICON_FILL, getMoveIconDataUri } from './moveIcon';
 
 const LOG_SOURCE: string = 'MoveButtonCommandSet';
 
@@ -18,12 +20,17 @@ export interface IMoveButtonCommandSetProperties {}
 export default class MoveButtonCommandSet extends BaseListViewCommandSet<IMoveButtonCommandSetProperties> {
 
   private _container: HTMLElement | null = null;
+  private _themeProvider!: ThemeProvider;
 
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, 'Initialized MoveButtonCommandSet');
 
     const moveCommand: Command = this.tryGetCommand('MOVE_PAGE');
     if (moveCommand) moveCommand.visible = false;
+
+    this._themeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
+    this._applyIconTheme(this._themeProvider.tryGetTheme());
+    this._themeProvider.themeChangedEvent.add(this, this._onThemeChanged);
 
     this.context.listView.listViewStateChangedEvent.add(this, this._onListViewStateChanged);
 
@@ -86,8 +93,22 @@ export default class MoveButtonCommandSet extends BaseListViewCommandSet<IMoveBu
   }
 
   public onDispose(): void {
+    this._themeProvider?.themeChangedEvent.remove(this, this._onThemeChanged);
     this._closePicker();
     super.onDispose();
+  }
+
+  private _onThemeChanged = (args: ThemeChangedEventArgs): void => {
+    this._applyIconTheme(args.theme);
+  }
+
+  private _applyIconTheme(theme: IReadonlyTheme | undefined): void {
+    const moveCommand: Command = this.tryGetCommand('MOVE_PAGE');
+    if (!moveCommand) return;
+
+    const fillColor = theme?.semanticColors?.bodyText ?? DEFAULT_ICON_FILL;
+    moveCommand.iconImageUrl = getMoveIconDataUri(fillColor);
+    this.raiseOnChange();
   }
 
   private static _isFolder(row: RowAccessor): boolean {
