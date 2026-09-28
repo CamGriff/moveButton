@@ -28,9 +28,14 @@ export default class MoveButtonCommandSet extends BaseListViewCommandSet<IMoveBu
     const moveCommand: Command = this.tryGetCommand('MOVE_PAGE');
     if (moveCommand) moveCommand.visible = false;
 
-    this._themeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
-    this._applyIconTheme(this._themeProvider.tryGetTheme());
-    this._themeProvider.themeChangedEvent.add(this, this._onThemeChanged);
+    // Consuming ThemeProvider before the service scope has finished initializing can
+    // hand back a provider whose tryGetTheme() is still undefined, leaving the icon
+    // stuck on the fallback color with no later themeChangedEvent to fix it.
+    this.context.serviceScope.whenFinished(() => {
+      this._themeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
+      this._applyIconTheme(this._themeProvider.tryGetTheme());
+      this._themeProvider.themeChangedEvent.add(this, this._onThemeChanged);
+    });
 
     this.context.listView.listViewStateChangedEvent.add(this, this._onListViewStateChanged);
 
@@ -106,7 +111,10 @@ export default class MoveButtonCommandSet extends BaseListViewCommandSet<IMoveBu
     const moveCommand: Command = this.tryGetCommand('MOVE_PAGE');
     if (!moveCommand) return;
 
-    const fillColor = theme?.semanticColors?.bodyText ?? DEFAULT_ICON_FILL;
+    // palette.themePrimary is the site's accent color and actually changes with the
+    // chosen theme; semanticColors.bodyText stays a fixed neutral gray across almost
+    // every built-in theme, so it wouldn't visibly reflect the site's colors.
+    const fillColor = theme?.palette?.themePrimary ?? DEFAULT_ICON_FILL;
     moveCommand.iconImageUrl = getMoveIconDataUri(fillColor);
     this.raiseOnChange();
   }
